@@ -5,7 +5,7 @@ import shutil
 import unittest
 
 from crx3 import crxfile
-from tests.common import OUTPUT_PATH, EXAMPLE_EXTENSION_NAME, EXAMPLE_EXTENSION_DIR, TESTCASES_DIR
+from tests.common import OUTPUT_PATH, EXAMPLE_EXTENSION_NAME, EXAMPLE_EXTENSION_DIR
 from tests.mytest import MyTest
 
 

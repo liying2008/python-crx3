@@ -5,7 +5,7 @@ import unittest
 
 from crx3 import creator
 from tests.mytest import MyTest
-from tests.common import OUTPUT_PATH, EXAMPLE_EXTENSION_NAME, EXAMPLE_EXTENSION_DIR, TESTCASES_DIR
+from tests.common import OUTPUT_PATH, EXAMPLE_EXTENSION_NAME, EXAMPLE_EXTENSION_DIR
 
 
 class CreatorTestCase(MyTest):

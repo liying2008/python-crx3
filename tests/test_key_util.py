@@ -4,7 +4,7 @@ import os
 import unittest
 
 from crx3 import key_util, utils
-from tests.common import EXAMPLE_EXTENSION_DIR, EXAMPLE_EXTENSION_NAME, TESTCASES_DIR
+from tests.common import EXAMPLE_EXTENSION_DIR, EXAMPLE_EXTENSION_NAME
 from tests.mytest import MyTest
 
 

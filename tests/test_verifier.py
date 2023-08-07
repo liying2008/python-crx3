@@ -10,9 +10,8 @@ from tests.mytest import MyTest
 
 
 class VerifierTestCase(MyTest):
-    print(os.getcwd())
-    def test_01_verify_ok_full(self):
 
+    def test_01_verify_ok_full(self):
         crx_file = os.path.join(EXAMPLE_EXTENSION_DIR, EXAMPLE_EXTENSION_NAME + '.crx')
         public_key_file = os.path.join(EXAMPLE_EXTENSION_DIR, EXAMPLE_EXTENSION_NAME + '-public-key.pem')
         verifier_result, header_info = verifier.verify(crx_file)

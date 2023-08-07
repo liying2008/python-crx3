@@ -38,7 +38,7 @@ def convert_to_zip(crx_file, output_zip_name):
             crx_fp.close()
             raise NotADirectoryError(parent_path)
     else:
-        os.makedirs(parent_path)
+        os.makedirs(parent_path, exist_ok=True)
 
     crx_file_size = os.path.getsize(crx_file)
     zip_data_len = crx_file_size - position
@@ -55,7 +55,7 @@ def _unpack_zip(zip_file_or_data, output_dir):
     if os.path.exists(output_dir) and not os.path.isdir(output_dir):
         raise NotADirectoryError(output_dir)
     elif not os.path.exists(output_dir):
-        os.makedirs(output_dir)
+        os.makedirs(output_dir, exist_ok=True)
 
     if isinstance(zip_file_or_data, bytes):
         zf = zipfile.ZipFile(io.BytesIO(zip_file_or_data))

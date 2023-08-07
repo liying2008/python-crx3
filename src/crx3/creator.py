@@ -20,6 +20,9 @@ def create_private_key_file(output_file):
     :param output_file: private key file name for output, such as: extension.pem .
     """
     private_key = key_util.create_private_key()
+    parent_path = os.path.dirname(output_file)
+    if not os.path.exists(parent_path):
+        os.makedirs(parent_path, exist_ok=True)
     with open(output_file, 'wb') as pf:
         pf.write(key_util.get_private_key_data(private_key))
 
@@ -64,6 +67,10 @@ def _create_crx_file_header(public_key, archive_signed_data, signed_header_data)
 
 
 def _write_crx(crx_file_header, zip_data, output_file):
+    parent_path = os.path.dirname(output_file)
+    if not os.path.exists(parent_path):
+        os.makedirs(parent_path, exist_ok=True)
+
     version_octets = struct.pack('<I', VERSION)
     header_size_octets = struct.pack('<I', len(crx_file_header))
     with open(output_file, 'wb') as crx:
