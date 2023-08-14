@@ -46,3 +46,34 @@ assert verifier_result == verifier.VerifierResult.OK_FULL
 assert header_info.crx_id == 'jjomgndeajdmncfenopimafofpnflcfo'
 assert header_info.public_key == 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMI...FkbU7H8sDQIDAQAB'
 ```
+
+## Commands
+
+- `crx3 create -h`
+
+```
+usage: crx3 create [-h] [-pk PRIVATE_KEY_FILE] [-o OUTPUT_FILE] [-v] source
+
+positional arguments:
+  source                zip file or directory to be packed
+
+options:
+  -h, --help            show this help message and exit
+  -pk PRIVATE_KEY_FILE, --private-key PRIVATE_KEY_FILE
+                        private key file to be used for signing. If not specified, the program automatically creates a new one and saves it to the same directory as the crx file
+  -o OUTPUT_FILE, --output OUTPUT_FILE
+                        path to the output crx file
+  -v, --verbose         print more information
+```
+
+- `crx3 verify -h`
+
+```
+usage: crx3 verify [-h] [-v] crx_file
+positional arguments:
+  crx_file       crx file
+
+options:
+  -h, --help     show this help message and exit
+  -v, --verbose  print more information
+```
