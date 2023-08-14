@@ -10,9 +10,9 @@ def main():
     # print(args)
     subcommand = args.command
     if subcommand == Subcommand.CREATE:
-        return cmd_create.create(args.source, args.private_key_file, args.output_file)
+        return cmd_create.create(args.source, args.private_key_file, args.output_file, args.verbose)
     elif subcommand == Subcommand.VERIFY:
-        return cmd_verify.verify(args.crx_file)
+        return cmd_verify.verify(args.crx_file, args.verbose)
     return 0
 
 

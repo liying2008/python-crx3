@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import sys
+
 from crx3 import creator
 
 
@@ -14,10 +16,14 @@ def _generate_private_key_filename(output_file):
     return output_file[:-4] + '.pem'
 
 
-def create(source, private_key_file='', output_file=''):
+def create(source, private_key_file='', output_file='', verbose=False):
     if output_file == '':
         output_file = _generate_output_filename(source)
     if private_key_file == '':
         private_key_file = _generate_private_key_filename(output_file)
         creator.create_private_key_file(private_key_file)
+        if verbose:
+            sys.stdout.write('private key file created at: {}\n'.format(private_key_file))
     creator.create_crx_file(source, private_key_file, output_file)
+    if verbose:
+        sys.stdout.write('crx file created at: {}\n'.format(output_file))

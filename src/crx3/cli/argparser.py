@@ -28,9 +28,15 @@ def parse_args(args):
     create_parser.add_argument('-o', '--output', type=str, required=False, default='',
                                dest='output_file',
                                help='path to the output crx file')
+    create_parser.add_argument('-v', '--verbose', action='store_true', required=False, default=False,
+                               dest='verbose',
+                               help='print more information')
 
-    create_parser = subparsers.add_parser(Subcommand.VERIFY,
+    verify_parser = subparsers.add_parser(Subcommand.VERIFY,
                                           help='verify that a crx file is a valid chrome extension file')
-    create_parser.add_argument('crx_file', type=str, help='crx file')
+    verify_parser.add_argument('crx_file', type=str, help='crx file')
+    verify_parser.add_argument('-v', '--verbose', action='store_true', required=False, default=False,
+                               dest='verbose',
+                               help='print more information')
 
     return parser.parse_args(args)
