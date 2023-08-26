@@ -49,7 +49,9 @@ assert header_info.public_key == 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMI...FkbU7H8sD
 
 ## Commands
 
-- `crx3 create -h`
+- **Create a crx file.**
+
+`crx3 create [-pk PRIVATE_KEY_FILE] [-o OUTPUT_FILE] [-v] source`
 
 ```
 usage: crx3 create [-h] [-pk PRIVATE_KEY_FILE] [-o OUTPUT_FILE] [-v] source
@@ -66,7 +68,9 @@ options:
   -v, --verbose         print more information
 ```
 
-- `crx3 verify -h`
+- **Verify that a crx file is valid.**
+
+`crx3 verify [-v] crx_file`
 
 ```
 usage: crx3 verify [-h] [-v] crx_file
