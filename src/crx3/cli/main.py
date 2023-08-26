@@ -7,6 +7,8 @@ from crx3.cli.argparser import Subcommand
 
 def main():
     args = argparser.parse_args(sys.argv[1:])
+    if args is None:
+        return 1
     # print(args)
     subcommand = args.command
     if subcommand == Subcommand.CREATE:

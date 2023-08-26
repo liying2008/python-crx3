@@ -39,4 +39,8 @@ def parse_args(args):
                                dest='verbose',
                                help='print more information')
 
-    return parser.parse_args(args)
+    args = parser.parse_args(args)
+    if not args.command:
+        parser.print_help()
+        return None
+    return args
