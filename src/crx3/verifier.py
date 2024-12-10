@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import base64
+import hashlib
 import os.path
 import os.path
 import struct
@@ -53,10 +54,11 @@ def _verity_signature(crx_fp, file_size, public_key_bytes, signed_header_data, s
     return public_key.verify(signature, digest, padding.PKCS1v15(), Prehashed(sha256_algorithm))
 
 
-def verify(crx_file):
+def verify(crx_file, required_key_hashes=None):
     """
     Verify the file as a valid Crx of CRX3 format.
     :param crx_file: crx file path.
+    :param required_key_hashes: a list of hex strings of public key hashes.
     :return: (VerifierResult, CrxHeaderInfo or None)
     """
     if not os.access(crx_file, os.F_OK | os.R_OK):
@@ -109,6 +111,7 @@ def verify(crx_file):
         return return_error(VerifierResult.ERROR_REQUIRED_PROOF_MISSING)
 
     public_key_bytes = None
+    required_key_set = set(required_key_hashes or [])
     for rsa_proof in rsa_proofs:
         # print(rsa_proof)
         if id_util.calc_crx_id_by_public_key(rsa_proof.public_key) == crx_id:
@@ -121,8 +124,10 @@ def verify(crx_file):
         except Exception as e:
             # print(e)
             return return_error(VerifierResult.ERROR_SIGNATURE_VERIFICATION_FAILED)
+        public_key_hash = hashlib.sha256(rsa_proof.public_key).hexdigest()
+        required_key_set.discard(public_key_hash)
 
-    if public_key_bytes is None:
+    if public_key_bytes is None or required_key_set:
         return return_error(VerifierResult.ERROR_REQUIRED_PROOF_MISSING)
     # Convert public key bytes to base64 string.
     public_key_str = base64.b64encode(public_key_bytes).decode('utf-8')
